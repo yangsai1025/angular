@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+</head>
+<body>
+  <script src="../libs/angular.js"></script>
+  <script>
+    var $ = angular.element
+    console.log(2)
+    $(document).ready(function(){
+      var $box = $(document.getElementById('box'))
+      console.dir($box)
+      console.dir($('<div></div>'))
+    })
+  </script>
+  <div id="box"></div>
+
+</body>
+</html>

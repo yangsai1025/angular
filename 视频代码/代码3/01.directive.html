@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>directive</title>
+  <style>
+    .register{
+      background: #E96D6D;
+    }
+    .login{
+      background: #7FEFAA
+    }
+  </style>
+</head>
+<!-- ng-cloak -->
+<body ng-app="directiveApp">
+  <h1>以属性形式使用: A</h1>
+  <div my-btn test="小明" age="18"></div>
+  <h1>以样式名形式使用: C</h1>
+  <div class="my-btn"></div>
+  <h1>以自定义标签形式使用: E</h1>
+
+  <my-btn mystyle="login">
+  注册！！！
+  </my-btn>
+
+  <my-btn mystyle="register">
+  注册！！！002
+  </my-btn>
+
+  <script id="tpl" type="text/ng-template">
+      <div class="flag">
+        <p>{{msg}}</p>
+        <button class="{{mystyle}}" ng-transclude>登陆</button>
+      </div>
+  </script>
+  <script src="libs/angular.js"></script>
+  <script>
+    // 1.创建模块对象
+    var app = angular.module('directiveApp', [])
+
+    // 2.创建自定义指令
+    // 第一个参数：是指令的名字,必须是驼峰命名法
+    //             使用时把大写改成小写，在原来大写前加上-
+    // 第二个参数：和控制器的第二个参数类似!
+    app.directive('myBtn', [function(){
+      // 在这里直接return 一个对象就可以了
+      return {
+        // template属性，是封装的ui
+        // template:'<div><button>我是按钮</button></div>',
+        // A.作用也是提供字符串，对应的内容会被添加到自定义指令所在位置
+        // 值是一个html文件所在位置
+        // B. 值也可以是一个script标签的id
+        // templateUrl:'./01.template.html'
+        templateUrl:'tpl',
+        restrict:'ECA',  // Attribute  Class  Element
+        // 取代，替换
+        // replace: true, // 为true时，会把模板中的内容替换到自定义上。
+        // 为true时会把自定义标签中间的内容，插入到指定的模板中
+        transclude: true,
+        // 可以得到自定义指令的属性
+        scope:{
+          // @开头，表示要获取自定义指令属性的值,
+          // 在对应的模板可以直接使用{{tmp}} 来得到mystyle对应的值
+          // tmp:'@mystyle'
+          mystyle:'@' // 这是上一行的简写
+        },
+
+        // 指定一个function
+        link:function(scope,element,attributes){
+          // 参数:
+          // scope: 类似于控制器时里的$scope,但是这里的scope属性值是在模板中使用的.
+          scope.msg="我是中国人，我爱自己的祖国!"
+          // element ： 指向模板最外层的对象
+          // 如果replace为treu,指向的就是自定义指令所在标签
+          console.log(element)
+          element.on('click',function(){
+            alert('你点我了!')
+          })
+          // attributes : 这个对象里的属性就是自定义指令所在标签的属性
+          console.log(attributes)
+          // angular.element
+           console.log('link')
+        }
+      }
+    }])
+  </script>
+</body>
+</html>

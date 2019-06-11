@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>route</title>
+</head>
+<body ng-app="myApp">
+  
+  <div ng-view>
+    
+  </div>
+
+  <script src="libs/angular.js"></script>
+  <script src="libs/angular-route.js"></script>
+  <script>
+    // 1.创建模块
+    var app = angular.module('myApp', ['ngRoute'])
+
+    // 2.配置路由规则(约定什么样的锚点值，对应什么样的内容)
+    // 第一个参数与controller第二个参数类似
+    app.config(['$routeProvider',function($routeProvider){
+      
+      // 第一个参数：对应的url中锚点值
+      // 当angular检测到url中锚点变为/ali里，就会把template对应的内容插入到页面拥有ng-view指令的标签中
+      // 在规则中以：号开始,后面跟上一个名字(就相当于变量名，表明当前位置可以写成任意的值)
+      // ?号表示当前位置如果没有值，也可以匹配到
+      $routeProvider.when('/company/:myname?',{
+        template:'<div>{{msg}}</div>',
+        // 指定一个控制器的名字,
+        // 当前url中锚点值为/ali时就会执行控制器中的回调函数
+        // 我们可以直接在template/templateUrl对应的模板中使用该控制器中对应的$scope属性值
+        controller:'demoController'
+        //templateUrl
+      })
+      .when('/xxx',{
+        template:'<div>唂</div>'
+      })
+      // 当以上规则都不匹配时，匹配otherwise里的规则
+      .otherwise({
+        // 这里相应于把页面锚点值改为/company/ali
+        redirectTo:'/company/ali'
+      })
+    }])
+
+    app.controller('demoController',[
+      '$scope',
+      '$routeParams'
+      ,function($scope,$routeParams){
+       console.log($routeParams)
+      // $routeParams的属性包含了路由参数及值
+      // 假设有一组数据
+      $scope.data = {
+        baidu:'二楼',
+        ali:'三楼',
+        tx:'四楼'
+      }
+      $scope.msg = "你要找的公司在"+$scope.data[$routeParams.myname]
+    }])
+  </script>
+</body>
+</html>

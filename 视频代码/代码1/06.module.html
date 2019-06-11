@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>angular 模块</title>
+</head>
+
+<!-- 2.加上ng-app指令 -->
+<body ng-app="house">
+  <div>{{testName}}</div>
+  <!-- 1.引入angular.js文件 -->
+  <script src="libs/angular.js"></script>
+  <script>
+    // 3.我们自己要提供一个模块，去管理页面
+    // 第一个参数是模块的名字
+    // 如果当前模块需要依赖其他模块，就指定第二个参数为数组，
+    // 数组中的元素就是我们当前模块依赖的模块
+    // 我们创建房子模块在要
+    angular.module('house',['window','stack'])
+
+    // 如果窗户不依赖于其他模块，也必需传入一个空数组.
+    // 如果不传递和二个参数，就会变成获取窗户模块
+    angular.module('window',[])
+    var tmp = angular.module('window')
+    console.log(tmp)
+    angular.module('stack',[])
+  </script>
+</body>
+</html>

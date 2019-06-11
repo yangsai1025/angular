@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+</head>
+<body>
+  <input id="num" type="text">
+  <input id="add" type="button" value="值+1">
+  <script>
+    // 1.获取add按钮对象，注册点击事件
+    var add = document.getElementById('add')
+    add.onclick = function(){
+      // 2.得到文本框对象,使其值+1
+      var num = document.getElementById('num')
+      // 值+1
+      num.value = (num.value - 0) + 1
+    }
+  </script>
+</body>
+</html>

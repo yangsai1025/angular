@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>filter</title>
+</head>
+<body ng-app="filterApp" ng-controller="fitlerController">
+  <div>
+    <input type="text" ng-model="search">
+    
+    <ul>
+      <!-- 会到对应的todos中寻找，如果当前元素有completed属性且值 为true就会被显示出来。（只会到completed属性中寻找） -->
+      <li ng-repeat="item in todos | filter : {completed:true} ">
+        {{item.name}},{{item.completed}}
+      </li>
+    </ul>
+
+    <ul>
+      <li ng-repeat="item in todos | filter : true ">
+        {{item.name}},{{item.completed}}
+      </li>
+    </ul>
+  </div>
+  <script src="libs/angular.js"></script>
+  <script>
+    // 1.创建模块
+    var app = angular.module('filterApp', [])
+
+    // 2.创建控制器
+
+    app.controller('fitlerController', ['$scope',function($scope){
+      $scope.search=''
+       // 假设已经得到数据
+    $scope.todos = [
+    {id:1,name:'吃饭',completed:true},
+    {id:2,name:'睡觉吃饭',completed:true},
+    {id:3,name:'打豆豆',completed:false},
+    {id:4,name:'学习', completed:true},
+    {id:5,name:'喝水,true',completed:false},
+    ]
+    }])
+  </script>
+</body>
+</html>

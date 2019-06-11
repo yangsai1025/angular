@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>angular helloworld</title>
+</head>
+<!-- 2.加上ng-app属性,指定了angular要去管理哪一部分的代码 -->
+<body>
+<p>123</p>
+<h1>{{myVal}}</h1>
+<p>1231</p>
+<div ng-app  ng-init="myVal='你好，小明!'">
+    <!-- 4.显示值 -->
+  <h1>{{myVal}}</h1>
+  <h1>{{myVal}}</h1>
+  <!-- 3.获取文本的值 -->
+  <input ng-model="myVal" type="text">
+  </div>
+
+
+  <!-- 1.引入angular.js -->
+  <script src="./libs/angular.js"></script>
+</body>
+</html>

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>07.隔行换色.html</title>
+  <style>
+    body,ul{
+      padding: 0,
+      margin:0;
+    }
+    .myul{
+      margin: 0 auto;
+      width: 80%;
+    }
+    .myul li {
+      line-height: 35px;
+      padding-left: 10px;
+      color: #fff;
+      margin-top: 2px;
+    }
+    .red{
+      background: #F46060;
+    }
+    .green{
+      background: #5FF371;
+    }
+  </style>
+</head>
+<body ng-app="myApp">
+  <div ng-controller="demoController">
+    <ul class="myul">
+    <!-- ng-repeat遍历 -->
+      <li class="{{item.id%2 ===0 ?'red':'green'}}" ng-repeat="item in data">
+        {{item.name}},{{item.age}}
+      </li>
+    </ul>
+  
+    <h1>$even , $odd</h1>
+    <ul class="myul">
+    <!--  $odd, ng-repeat在每次遍历时都提供这样的值，为true表明当前数据是否第奇数条,从索引为0开始判断的 -->
+    <!--  $even, ng-repeat在每次遍历时都提供这样的值，为true表明当前数据是否第偶数条,从索引为0开始判断的 -->
+      <li class="{{ $odd ?'red':'green'}}" ng-repeat="item in data">
+        {{item.name}},{{item.age}}
+      </li>
+    </ul>
+  </div>
+  <script src="libs/angular.js"></script>
+  <script>
+    // 1.创建模块
+    var app = angular.module('myApp', [])
+
+    // 2.创建控制器
+    app.controller('demoController',['$scope', function($scope){
+      // 假设通过请求得到了数据
+      $scope.data = [
+      {id:2,name:'小明',age:18},
+      {id:1,name:'小月',age:19},
+      {id:2.3,name:'小黑',age:28},
+      {id:4,name:'小红',age:10},
+      {id:5,name:'小白',age:8},
+      ]
+    }])
+  </script>
+</body>
+</html>

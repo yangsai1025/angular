@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>controller obj</title>
+</head>
+<body ng-app="myApp">
+<div ng-controller="demoController as obj">
+  <p>{{myname}}</p>
+  <p>{{obj.name}}</p>
+</div>
+  <script src="libs/angular.js"></script>
+  <script>
+    // 1.创建模块
+    var app = angular.module('myApp', [])
+
+    // 2.创建控制器
+    // angular会把这二个参数当作构造函数使用
+    app.controller('demoController', function($scope){
+      $scope.myname='小红'
+      this.name = '小明'
+    })
+  </script>
+</body>
+</html>

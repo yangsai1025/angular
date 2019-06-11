@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>controller old</title>
+</head>
+<body ng-app>
+  <div ng-controller="demoController">
+    {{name}}
+  </div>
+  <div ng-controller="xxx">
+    {{age}}
+  </div>
+  <script src="libs/angular1.2.30.js"></script>
+  <script>
+    // 创建控制器
+    // angular会把全局的函数当作控制器
+    function demoController($scope){
+      $scope.name = '小明'
+    }
+
+    function xxx($scope){
+      $scope.age = 18
+    }
+  </script>
+</body>
+</html>

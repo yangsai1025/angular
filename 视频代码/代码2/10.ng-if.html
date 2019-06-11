@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>ng-if</title>
+</head>
+<body ng-app="myApp">
+  <div ng-controller="demoController">
+  <!-- ng-if，也能控制元素的显示或隐藏,为true时显示,为false时【会将当前dom元素移除】 -->
+    <p ng-if="true">我是中国人，我爱自己的祖国!</p>
+    <h1>ng-if="false"</h1>
+    <p ng-if="false">我是中国人，我爱自己的祖国!</p>
+
+    <h1>ng-switch</h1>
+    <div ng-switch="name">
+      <div ng-switch-when="小明">
+        我是小明，我在这里！
+      </div>
+      <div ng-switch-when="小红">
+        我是小红!
+      </div>
+    </div>
+  </div>
+  <script src="libs/angular.js"></script>
+  <script>
+    // 1.创建模块
+    var app = angular.module('myApp', [])
+    // 2.创建控制器
+    app.controller('demoController',['$scope', function($scope){
+      $scope.name = '小红'
+
+      switch($scope.name){
+        case '小明':
+        console.log(123);
+        break;
+      }
+    }])
+  </script>
+</body>
+</html>

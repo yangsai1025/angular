@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>过滤器</title>
+</head>
+<body ng-app="testFilter" ng-controller="filterController">
+  <h1>在js中使用过滤器</h1>
+  {{result}}
+
+ <h1>json</h1>
+ <!--  格式化显示json数据，参数指定缩近的长度 -->
+ <pre>{{myJson | json : 8}}</pre>
+  <h1>orderBy</h1>
+  <!-- 对数据进行排序，参数，给+号就按正序排，- 就按倒序排 -->
+  <span ng-repeat="item in arr | orderBy:'-'">{{item }}，</span>
+
+  <h1>limitTo</h1>
+  <!-- 第一个参数，表明显示多少个字，第二个参数表示，从第几个字开始显示(索引从0开始) -->
+  <p>{{msg | limitTo : 5 : 2}}...</p>
+
+  <h1>currency</h1>
+  <!-- 在数据模型后加上|  再加上过滤器的名字 -->
+  <p>{{money | currency : '￥'}}</p>
+
+  <h1>date</h1>
+  <p>{{myDate | date : 'yyyy年MM月dd日 HH:mm:ss'}}</p>
+  <script src="libs/angular.js"></script>
+  <script>
+    // 1.创建模块
+    var app = angular.module('testFilter', [])
+
+    // 2.创建控制器
+    app.controller('filterController', ['$scope','$filter',function($scope,$filter){
+      // 财富
+      $scope.money = 9998
+      // Date.now()
+      $scope.myDate = 1248324244873
+
+      $scope.msg = '我是中国人，我爱自己的祖国!'
+
+      $scope.arr =[1,2,3,8,4,6,0]
+
+      $scope.myJson = {a:{name:'小明',age:18},b:{name:'小红',age:20}}
+
+      // 可以调用不同的过滤器得到相应的结果
+      // 参数是一个过滤器的名字
+      // 返回值是一个方法
+      //        : 第一个参数是需要处理的数据
+      //        : 后面的参数是当前过滤器本身需要的参数
+     $scope.result =  $filter('currency')($scope.money,'￥')
+
+    }])
+  </script>
+</body>
+</html>

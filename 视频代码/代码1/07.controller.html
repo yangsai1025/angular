@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>controller</title>
+</head>
+<!-- 2.加ng-app指令 -->
+<body ng-app="window">
+  <!-- 5.在需要显示的数据上加上控制器的名字 -->
+  <div ng-controller="demoController"
+  >
+  {{testName}}
+  </div>
+  {{xxx}}
+  <!-- 1.引angular.js文件 -->
+  <script src="libs/angular.js"></script>
+  <script>
+    // 3.创建模块
+    var win = angular.module('window',[])
+
+    // 4.创建控制器
+    // 第一个参数：是一个名字
+    // 第二个参数：是个回调函数
+    win.controller('demoController',function($scope){
+      // 初始化数据模型
+      $scope.testName = '小明'
+      $scope.xxx='小红'
+    })
+
+  </script>
+</body>
+</html>

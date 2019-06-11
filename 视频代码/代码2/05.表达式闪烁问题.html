@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>controller</title>
+  <style>
+    .ng-cloak{
+      display: none;
+    }
+  </style>
+</head>
+<!-- 2.加上ng-app指令 -->
+<body ng-app="myApp">
+  <div ng-controller="demoController">
+    {{msg}}
+
+    <!-- 使用ng-bind指令，作用与表达式类似,是写在标签的属性位置,
+         angular会把ng-bind对应的值放到所在标签中间 -->
+    <p ng-bind="msg"> </p>
+
+  <h1>ngCloak</h1>
+    <!-- ng-cloak解决表达式闪烁 -->
+    <div class="ng-cloak">
+      <p>{{msg}}</p>
+      <p>{{msg}}</p>
+      <p>{{msg}}</p>
+      <p>{{msg}}</p>
+      <p>{{msg}}</p>
+      <p>{{msg}}</p>
+      <p>{{msg}}</p>
+    </div>
+  </div>
+  <!-- 1.引入angular.js文件 -->
+  <script src="libs/angular.js"></script>
+  <script>  
+    // 3.创建模块
+    var app = angular.module('myApp',[])
+
+    // 4.创建控制器
+    app.controller('demoController',['$scope','$log',function($scope,$log){
+      $scope.msg = 'hello World!'
+      $log.log('哈哈哈哈！')
+    }])
+
+  </script>
+</body>
+</html>

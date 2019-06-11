@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>ng-class</title>
+  <style>
+    body,ul{
+      padding: 0,
+      margin:0;
+    }
+    .myul{
+      margin: 0 auto;
+      width: 80%;
+    }
+    .myul li {
+      line-height: 35px;
+      padding-left: 10px;
+      color: #fff;
+      margin-top: 2px;
+    }
+    .red{
+      background: #F46060;
+    }
+    .green{
+      background: #5FF371;
+    }
+    .blue{
+      background: #4D9DF3;
+    }
+  </style>
+</head>
+<body ng-app="myApp">
+<div ng-controller="demoController">
+  <ul class="myul">
+  <!--  ng-class,动态的添加class样式,
+      以对象的形式书写，angular会把属性值为true的属性名当作样式添加到class -->
+    <li ng-class="{red:item.age>=20, green:item.age>=10&&item.age<20,blue:item.age<10}" ng-repeat="item in data">
+      {{item.name}},{{item.age}}
+    </li>
+  </ul>
+</div>
+  <script src="libs/angular.js"></script>
+  <script>
+    // 1.创建模块
+    var app  = angular.module('myApp',[])
+
+    // 2.创建控制器
+    app.controller('demoController',['$scope',function($scope){
+      // 假设通过请求得到了数据
+      $scope.data = [
+      {id:2,name:'小明',age:18},   // >=20 red
+      {id:1,name:'小月',age:19},   // >=10 <20 green
+      {id:2.3,name:'小黑',age:28}, // <10  blue
+      {id:4,name:'小红',age:9},
+      {id:5,name:'小白',age:8},
+      ]
+    }])
+  </script>
+</body>
+</html>

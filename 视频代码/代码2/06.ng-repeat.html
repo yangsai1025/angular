@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>ng-repeat</title>
+</head>
+<body ng-app="myApp">
+  <div ng-controller="demoController">
+    <ul>
+    <!-- ng-repeat 遍历生成数据，类似for in 循环的语法 -->
+      <li ng-repeat="item in users" >
+        {{item.name}} , {{item.age}}
+      </li>
+    </ul>
+
+  <h1>ng-repeat遍历对象</h1>
+  <ul>
+    <li ng-repeat="item in obj">
+      {{item.name}},{{item.age}}
+    </li>
+  </ul>
+
+  <h1>数据中有重复值情况</h1>
+  <ul>
+    <li ng-repeat="item in arr track by $index">
+      {{item}},{{$index}}
+    </li>
+  </ul>
+  </div>
+  <script src="libs/angular.js"></script>
+  <script>
+    // 1.创建模块
+    var app = angular.module('myApp', [])
+
+    // 2.创建控制器
+    app.controller('demoController',['$scope',function($scope){
+      // 初始化数据
+      $scope.users = [
+        {name:'小明',age:18},
+        {name:'小红',age:18},
+        {name:'小朋',age:28},
+        {name:'小月',age:19},
+        {name:'小黑',age:18},
+        {name:'小白',age:20}
+      ]
+
+      $scope.arr = [1,2,3,4,5,1]
+
+      // 我们希望也能够把这个对象时的数据遍历出来。
+      $scope.obj = {
+        xm:{name:'小明',age:18},
+        xh:{name:'小红',age:28},
+        xt:{name:'小天',age:10},
+        xy:{name:'小月',age:38}
+      }
+    }])
+  </script>
+</body>
+</html>

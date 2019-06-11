@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>calc</title>
+</head>
+<!-- 2.加上ng-app -->
+<body ng-app="myApp" ng-controller="caclController">
+  <input type="text" ng-model="A">+
+  <input type="text" ng-model="B">
+  <input type="button" value="=" ng-click="add()">
+  <input type="text" ng-model="result">
+  <!-- 1.引入angular.js文件 -->
+  <script src="libs/angular.js"></script>
+  <script>
+    // 3.创建模块
+    var app = angular.module('myApp',[])
+
+    // 4.创建控制器
+    app.controller('caclController',function($scope){
+      // 5.对数据模型的初始化操作
+      $scope.A = 0
+      $scope.B = 0
+      $scope.result = 0
+
+      // 6.初化行为模型
+      $scope.add = function(){
+        $scope.result = ($scope.A-0) + ($scope.B - 0)
+      }
+    })
+
+  </script>
+</body>
+</html>

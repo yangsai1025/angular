@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>angular实现值+1</title>
+</head>
+<!-- 2.约定,需要在页面上被处理的代码上加上ng-app属性,
+    在angular中以ng-开头的属性称之为指令 -->
+<body ng-app>
+  
+  <!-- 4.获取文本框的值 -->
+  <input ng-model="val" id="num" type="text">
+
+  <!-- 3. 给按钮添加点击事件-->
+  <input ng-click="val = (val - 0) + 1" id="add" type="button">
+  <!-- 1.引入angular.js文件 -->
+  <script src="./libs/angular.js"></script>
+</body>
+</html>
+<script>
+  // // 1.获取add按钮对象，注册点击事件
+  //   var add = document.getElementById('add')
+  //   add.onclick = function(){
+  //     // 2.得到文本框对象,使其值+1
+  //     var num = document.getElementById('num')
+  //     // 值+1
+  //     num.value = (num.value - 0) + 1
+  //   }
+</script>

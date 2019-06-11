@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>angular加法计算器</title>
+</head>
+
+
+<body>
+  <h1>加法计算器</h1>
+  <p>我们使用了angular技术：指令: ng-app,ng-model,ng-click 表达式{{A}}</p>
+  <!-- 2.加上ng-app指令, -->
+  <div ng-app>
+  <input type="text" ng-model="A">+
+  <input type="text" ng-model="B">
+  <!-- 3.注册点击事件 -->
+  <input type="button" value="=" ng-click="result = (A-0)+(B-0)">
+  <input type="text" ng-model="result">
+  {{(A-0) + (B-0)}}
+  </div>
+  <!-- 1.引入angualr.js文件 -->
+  <script src="libs/angular.js"></script>
+</body>
+</html>

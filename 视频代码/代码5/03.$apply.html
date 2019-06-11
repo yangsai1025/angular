@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+</head>
+<body ng-app="hello">
+  <div ng-controller="demoController">
+    {{name}}
+    <button ng-click="setName()">测试</button>
+  </div>
+  <script src="node_modules/angular/angular.js"></script>
+  <script>
+    // 1.创建模块
+    var app = angular.module('hello', [])
+
+    // 2.创建控制器
+    app.controller('demoController', ['$scope',function($scope){
+      $scope.name = '我是小明，我怕谁!'
+
+     // 是angular帮助我们调用的方法。angular调用之后会再次更新数据
+      $scope.setName=function(){
+          $scope.name = '我是小天'
+        }
+
+      setTimeout(function(){
+        $scope.name = '我是小红，我怕谁!'
+        
+        $scope.$apply()
+        console.log($scope.name)
+        
+      },2000)
+    }])
+
+
+    // var a = 2
+    // a = 4;
+  </script>
+</body>
+</html>
